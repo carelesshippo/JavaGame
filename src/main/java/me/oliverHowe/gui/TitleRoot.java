@@ -24,7 +24,7 @@ public class TitleRoot {
         startButton.setMaxSize(150, 100);
         startButton.setPrefSize(125, 75);
         startButton.setId("startButton");
-        startButton.setOnAction(event -> Main.getGameManager().startGame());
+        startButton.setOnAction(event -> Main.getGameManager().startGameForFirstTime());
         titleRoot.getChildren().add(startButton);
     }
 

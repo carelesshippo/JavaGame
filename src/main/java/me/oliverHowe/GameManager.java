@@ -14,6 +14,9 @@ public class GameManager {
     private Shark shark;
     private boolean gameRunning = false;
 
+    public GameManager() {
+    }
+
     public int getPlayerPosition() {
         return (int) player.getX();
     }
@@ -23,11 +26,15 @@ public class GameManager {
     }
 
     public void startGame() {
-        initializeAllCharacters();
         gui.switchToGameScene();
         gameRunning = true;
         TickManager tickManager = new TickManager();
         tickManager.start();
+    }
+
+    public void startGameForFirstTime() {
+        initializeAllCharacters();
+        startGame();
     }
 
     private void initializeAllCharacters() {
@@ -70,6 +77,7 @@ public class GameManager {
         AudioClip lose = new AudioClip(GUI.generateURL("lose.mp3"));
         lose.play();
         gameRunning = false;
+        gui.switchToGameOverScene();
     }
 
     @NotNull
@@ -96,5 +104,22 @@ public class GameManager {
             e.printStackTrace();
         }
         gui.updateScoreLabel();
+    }
+
+    public int getHighScore() {
+        return player.getHighScore();
+    }
+
+    public void startGameAgain() {
+        resetAllPositions();
+        startGame();
+    }
+
+    private void resetAllPositions() {
+        player.resetPosition();
+        for (Fish f : fishes) {
+            f.resetPosition();
+        }
+        shark.resetSharkLocationAndSpeed();
     }
 }

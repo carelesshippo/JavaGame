@@ -113,4 +113,8 @@ public class GUI extends Application {
         });
     }
 
+    public void switchToGameOverScene() {
+        GameOverRoot gameOverRootObject = new GameOverRoot();
+        setRoot(gameOverRootObject.getGameOverPane());
+    }
 }

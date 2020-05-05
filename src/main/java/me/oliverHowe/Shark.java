@@ -71,7 +71,7 @@ public class Shark {
         gameManager.endGame();
     }
 
-    private void resetSharkLocationAndSpeed() {
+    public void resetSharkLocationAndSpeed() {
         self.setY(spawnHeight);
         generateSpawnLocation();
         setSpeed(0, 10);

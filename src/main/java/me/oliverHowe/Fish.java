@@ -46,7 +46,7 @@ public class Fish {
     public void tick() {
         self.setY(self.getY() + speed);
         if (self.getY() > 550) {
-            resetFish();
+            resetPosition();
         }
         if (self.getY() > 350 && self.getY() < 425) {
             checkCollision();
@@ -56,12 +56,12 @@ public class Fish {
     private void checkCollision() {
         int playerPosition = gameManager.getPlayerPosition();
         if (self.getX() > playerPosition && self.getX() < playerPosition + 150) {
-            resetFish();
+            resetPosition();
             score();
             return;
         }
         if (self.getX() + 75 > playerPosition && self.getX() + 75 < playerPosition + 75) {
-            resetFish();
+            resetPosition();
             score();
         }
 
@@ -71,7 +71,7 @@ public class Fish {
         gameManager.scored();
     }
 
-    private void resetFish() {
+    public void resetPosition() {
         self.setY(SPAWNHEIGHT);
         generateSpawnLocation();
         setSpeed(0, 10);

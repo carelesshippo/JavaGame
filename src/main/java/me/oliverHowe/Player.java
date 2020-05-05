@@ -82,4 +82,11 @@ public class Player {
     private boolean theScoreIsGreaterThanHighScore() {
         return currentScore > highScore;
     }
+
+    public void resetPosition() {
+        boat.setY(325);
+        boat.setX(375);
+        xValue = 375;
+        currentScore = 0;
+    }
 }
