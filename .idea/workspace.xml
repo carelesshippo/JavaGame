@@ -19,19 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e0bb872-9b88-4d85-9fd1-b0facfabb172" name="Default Changelist" comment="Added more files">
-      <change afterPath="$PROJECT_DIR$/.idea/JavaGame.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/oliverHowe/Fish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/oliverHowe/Fish.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/oliverHowe/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/oliverHowe/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/oliverHowe/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/oliverHowe/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/oliverHowe/Shark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/oliverHowe/Shark.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/oliverHowe/gui/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/oliverHowe/gui/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/oliverHowe/gui/GameOverRoot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/oliverHowe/gui/GameOverRoot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/oliverHowe/gui/GameRoot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/oliverHowe/gui/GameRoot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/oliverHowe/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/oliverHowe/GameManager.class" afterDir="false" />
+    <list default="true" id="0e0bb872-9b88-4d85-9fd1-b0facfabb172" name="Default Changelist" comment="Added ability to change speed and amount of sharks over time.&#10;Also some col imporvments for dev">
+      <change beforePath="$PROJECT_DIR$/target/classes/me/oliverHowe/Fish.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/oliverHowe/Fish.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/oliverHowe/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/oliverHowe/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/oliverHowe/Shark.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/oliverHowe/Shark.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/oliverHowe/gui/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/oliverHowe/gui/GUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/me/oliverHowe/gui/GameRoot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/oliverHowe/gui/GameRoot.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +120,7 @@
       <option name="presentableId" value="Default" />
       <updated>1588358634707</updated>
       <workItem from="1591835093933" duration="627000" />
-      <workItem from="1591844172327" duration="3007000" />
+      <workItem from="1591844172327" duration="3221000" />
     </task>
     <task id="LOCAL-00001" summary="Created th game's fundamentals and UI. &#10;Still need to add the game over screen.">
       <created>1588478953377</created>
@@ -143,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588479111481</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added ability to change speed and amount of sharks over time.&#10;Also some col imporvments for dev">
+      <created>1591847350942</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1591847350942</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,7 +164,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created th game's fundamentals and UI. &#10;Still need to add the game over screen." />
     <MESSAGE value="Added more files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added more files" />
+    <MESSAGE value="Added ability to change speed and amount of sharks over time.&#10;Also some col imporvments for dev" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added ability to change speed and amount of sharks over time.&#10;Also some col imporvments for dev" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -209,10 +210,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="714" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/-1920.-130.1920.1040@0.0.1920.1040" timestamp="1588453251217" />
-    <state x="718" y="382" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1591844678505">
+    <state x="718" y="382" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1591847284509">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="718" y="382" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/-1920.-128.1920.1040@0.0.1920.1040" timestamp="1591844678505" />
+    <state x="718" y="382" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/-1920.-128.1920.1040@0.0.1920.1040" timestamp="1591847284509" />
     <state x="-1202" y="252" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/-1920.-130.1920.1040@-1920.-130.1920.1040" timestamp="1588365657385" />
     <state x="718" y="382" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040/-1920.-130.1920.1040@0.0.1920.1040" timestamp="1588455369963" />
     <state x="614" y="116" key="CommitChangelistDialog2" timestamp="1588530118526">
@@ -223,44 +224,44 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.-130.1920.1040@0.0.1920.1040" timestamp="1588442549538" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1591846669309">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1591847284927">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1921" height="226" key="GridCell.Tab.0.bottom.inPresentationMode" timestamp="1588477398587">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1921" height="226" key="GridCell.Tab.0.bottom.inPresentationMode/0.0.1920.1040/-1920.-130.1920.1040@0.0.1920.1040" timestamp="1588477398587" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.-128.1920.1040@0.0.1920.1040" timestamp="1591846669309" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.-128.1920.1040@0.0.1920.1040" timestamp="1591847284927" />
     <state width="1921" height="227" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.-130.1920.1040@-1920.-130.1920.1040" timestamp="1588452187191" />
     <state width="1921" height="356" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.-130.1920.1040@0.0.1920.1040" timestamp="1588536085550" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1591846669309">
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1591847284926">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1921" height="226" key="GridCell.Tab.0.center.inPresentationMode" timestamp="1588477398587">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1921" height="226" key="GridCell.Tab.0.center.inPresentationMode/0.0.1920.1040/-1920.-130.1920.1040@0.0.1920.1040" timestamp="1588477398587" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.-128.1920.1040@0.0.1920.1040" timestamp="1591846669309" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.-128.1920.1040@0.0.1920.1040" timestamp="1591847284926" />
     <state width="1921" height="227" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.-130.1920.1040@-1920.-130.1920.1040" timestamp="1588452187191" />
     <state width="1921" height="356" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.-130.1920.1040@0.0.1920.1040" timestamp="1588536085550" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1591846669309">
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1591847284926">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1921" height="226" key="GridCell.Tab.0.left.inPresentationMode" timestamp="1588477398587">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1921" height="226" key="GridCell.Tab.0.left.inPresentationMode/0.0.1920.1040/-1920.-130.1920.1040@0.0.1920.1040" timestamp="1588477398587" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.-128.1920.1040@0.0.1920.1040" timestamp="1591846669309" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.-128.1920.1040@0.0.1920.1040" timestamp="1591847284926" />
     <state width="1921" height="227" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.-130.1920.1040@-1920.-130.1920.1040" timestamp="1588452187191" />
     <state width="1921" height="356" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.-130.1920.1040@0.0.1920.1040" timestamp="1588536085550" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1591846669309">
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1591847284926">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1921" height="226" key="GridCell.Tab.0.right.inPresentationMode" timestamp="1588477398587">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1921" height="226" key="GridCell.Tab.0.right.inPresentationMode/0.0.1920.1040/-1920.-130.1920.1040@0.0.1920.1040" timestamp="1588477398587" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.-128.1920.1040@0.0.1920.1040" timestamp="1591846669309" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.-128.1920.1040@0.0.1920.1040" timestamp="1591847284926" />
     <state width="1921" height="227" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.-130.1920.1040@-1920.-130.1920.1040" timestamp="1588452187191" />
     <state width="1921" height="356" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.-130.1920.1040@0.0.1920.1040" timestamp="1588536085550" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1591846570933">
