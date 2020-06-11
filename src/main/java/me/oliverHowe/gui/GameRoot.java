@@ -1,5 +1,6 @@
 package me.oliverHowe.gui;
 
+import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 public class GameRoot {
     final GameManager gameManager;
     Label scoreLabel;
-    Pane gameRootPane;
+    final Pane gameRootPane = new Pane();
 
     public GameRoot() {
         gameManager = Main.getGameManager();
@@ -29,11 +30,14 @@ public class GameRoot {
     }
 
     public void createGameScenePane() {
-        gameRootPane = new Pane();
-        gameRootPane.getChildren().add(gameManager.getSharkPhoto());
+        gameRootPane.getChildren().clear();
         gameRootPane.getChildren().add(gameManager.getPlayerPhoto());
-        for (@NotNull ImageView f : gameManager.getFishImages()) {
-            gameRootPane.getChildren().add(f);
+
+        for (@NotNull ImageView fishImage : gameManager.getFishImages()) {
+            gameRootPane.getChildren().add(fishImage);
+        }
+        for (@NotNull ImageView sharkImage : gameManager.getSharkImages()) {
+            gameRootPane.getChildren().add(sharkImage);
         }
 
         scoreLabel = new Label("Score: 0");
@@ -43,6 +47,11 @@ public class GameRoot {
 
         gameRootPane.setBackground(generateBackground());
     }
+
+    public void addImageView(ImageView image) {
+        Platform.runLater(() -> gameRootPane.getChildren().add(image));
+    }
+
 
     @NotNull
     private Background generateBackground() {

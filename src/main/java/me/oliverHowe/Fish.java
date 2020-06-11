@@ -8,14 +8,14 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Random;
 
 public class Fish {
-    private final int SPAWNHEIGHT = -90;
+    private final int spawnHeight = -90;
     private ImageView self;
     private int speed;
-    private GameManager gameManager;
+    private final GameManager gameManager;
 
     public Fish() {
         gameManager = Main.getGameManager();
-        setSpeed(0, 10);
+        setSpeed(gameManager.getMinSpeed(), gameManager.getMaxSpeed());
         createSelf();
     }
 
@@ -33,14 +33,14 @@ public class Fish {
     private void setSpeed(int minimum, int max) {
         do {
             speed = new Random().nextInt(max);
-        } while (speed < minimum + 1);
+        } while (speed < minimum);
     }
 
     private void generateSpawnLocation() {
         @NotNull Random random = new Random();
         int x = random.nextInt(900);
         self.setX(x);
-        self.setY(SPAWNHEIGHT);
+        self.setY(spawnHeight);
     }
 
     public void tick() {
@@ -72,8 +72,8 @@ public class Fish {
     }
 
     public void resetPosition() {
-        self.setY(SPAWNHEIGHT);
+        self.setY(spawnHeight);
         generateSpawnLocation();
-        setSpeed(0, 10);
+        setSpeed(gameManager.getMinSpeed(), gameManager.getMaxSpeed());
     }
 }

@@ -10,12 +10,13 @@ import java.util.Random;
 public class Shark {
     final int spawnHeight = -90;
     final GameManager gameManager;
-    ImageView self;
+    private ImageView self;
     int speed;
+
 
     public Shark() {
         gameManager = Main.getGameManager();
-        setSpeed(0, 10);
+        setSpeed(gameManager.getMinSpeed(), gameManager.getMaxSpeed());
         createSelf();
     }
 
@@ -33,7 +34,7 @@ public class Shark {
     private void setSpeed(int minimum, int max) {
         do {
             speed = new Random().nextInt(max);
-        } while (speed < minimum + 1);
+        } while (speed < minimum);
     }
 
     private void generateSpawnLocation() {
@@ -46,7 +47,7 @@ public class Shark {
     public void tick() {
         self.setY(self.getY() + speed);
         if (self.getY() > 550) {
-            resetSharkLocationAndSpeed();
+            resetPosition();
         }
         if (self.getY() > 350 && self.getY() < 425) {
             checkCollision();
@@ -56,12 +57,12 @@ public class Shark {
     private void checkCollision() {
         int p = gameManager.getPlayerPosition();
         if (self.getX() > p && self.getX() < p + 150) {
-            resetSharkLocationAndSpeed();
+            resetPosition();
             gameOver();
             return;
         }
         if (self.getX() + 75 > p && self.getX() + 75 < p + 75) {
-            resetSharkLocationAndSpeed();
+            resetPosition();
             gameOver();
         }
 
@@ -71,9 +72,9 @@ public class Shark {
         gameManager.endGame();
     }
 
-    public void resetSharkLocationAndSpeed() {
+    public void resetPosition() {
         self.setY(spawnHeight);
         generateSpawnLocation();
-        setSpeed(0, 10);
+        setSpeed(gameManager.getMinSpeed(), gameManager.getMaxSpeed());
     }
 }

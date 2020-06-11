@@ -8,13 +8,20 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 public class GameManager {
-    final ArrayList<Fish> fishes = new ArrayList<>();
-    GUI gui = GUI.getInstance();
+    private final GUI gui = GUI.getInstance();
+    private final ArrayList<Fish> fishes = new ArrayList<>();
+    private final ArrayList<Shark> sharks = new ArrayList<>();
     private Player player;
-    private Shark shark;
     private boolean gameRunning = false;
+    private int maxSpeed = 10;
+    private int minSpeed = 1;
 
-    public GameManager() {
+    public int getMaxSpeed() {
+        return maxSpeed;
+    }
+
+    public int getMinSpeed() {
+        return minSpeed;
     }
 
     public int getPlayerPosition() {
@@ -40,25 +47,41 @@ public class GameManager {
     private void initializeAllCharacters() {
         initializePlayer();
         initializeFishes();
-        initializeShark();
+        initializeSharks();
     }
 
-    public void initializePlayer() {
+    private void initializePlayer() {
         player = new Player();
     }
 
-    public void initializeFishes() {
-        fishes.add(new Fish());
-        fishes.add(new Fish());
-        fishes.add(new Fish());
+    private void initializeFishes() {
+        fishes.clear();
+        addFishes(3, false);
     }
 
-    public void initializeShark() {
-        shark = new Shark();
+    private void addFishes(int amount, boolean midGame) {
+        for (int i = 0; i < amount; i++) {
+            Fish fish = new Fish();
+            if (midGame) {
+                gui.addToGameRoot(fish.getFish());
+            }
+            fishes.add(fish);
+        }
     }
 
-    public ImageView getSharkPhoto() {
-        return shark.getShark();
+    private void initializeSharks() {
+        sharks.clear();
+        addSharks(1, false);
+    }
+
+    private void addSharks(int amount, boolean midGame) {
+        for (int i = 0; i < amount; i++) {
+            Shark shark = new Shark();
+            if (midGame) {
+                gui.addToGameRoot(shark.getShark());
+            }
+            sharks.add(shark);
+        }
     }
 
     public ImageView getPlayerPhoto() {
@@ -81,6 +104,15 @@ public class GameManager {
     }
 
     @NotNull
+    public ArrayList<ImageView> getSharkImages() {
+        @NotNull ArrayList<ImageView> images = new ArrayList<>();
+        for (@NotNull Shark f : sharks) {
+            images.add(f.getShark());
+        }
+        return images;
+    }
+
+    @NotNull
     public ArrayList<ImageView> getFishImages() {
         @NotNull ArrayList<ImageView> images = new ArrayList<>();
         for (@NotNull Fish f : fishes) {
@@ -91,19 +123,29 @@ public class GameManager {
 
     public void tick() {
         player.tick();
-        shark.tick();
-        for (@NotNull Fish f : fishes) {
-            f.tick();
+        for (@NotNull Shark shark : sharks) {
+            shark.tick();
+        }
+        for (@NotNull Fish fish : fishes) {
+            fish.tick();
         }
     }
 
     public void scored() {
-        try {
-            player.setCurrentScore(player.getCurrentScore() + 1);
-        } catch (Exception e) {
-            e.printStackTrace();
+        int newScore = player.getCurrentScore() + 1;
+        if (newScore % 10 == 0) {
+            addToSpeed(2);
         }
+        if (newScore % 20 == 0) {
+            addSharks(1, true);
+        }
+        player.setCurrentScore(newScore);
         gui.updateScoreLabel();
+    }
+
+    private void addToSpeed(int speed) {
+        maxSpeed += speed;
+        minSpeed += speed;
     }
 
     public int getHighScore() {
@@ -111,15 +153,19 @@ public class GameManager {
     }
 
     public void startGameAgain() {
+        initializeFishes();
+        initializeSharks();
         resetAllPositions();
         startGame();
     }
 
     private void resetAllPositions() {
         player.resetPosition();
-        for (Fish f : fishes) {
-            f.resetPosition();
+        for (Fish fish : fishes) {
+            fish.resetPosition();
         }
-        shark.resetSharkLocationAndSpeed();
+        for (Shark shark : sharks) {
+            shark.resetPosition();
+        }
     }
 }

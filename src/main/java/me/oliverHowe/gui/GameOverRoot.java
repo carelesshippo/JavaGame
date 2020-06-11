@@ -10,7 +10,7 @@ import me.oliverHowe.Main;
 import org.jetbrains.annotations.NotNull;
 
 public class GameOverRoot {
-    private GameManager gameManager;
+    private final GameManager gameManager;
     private TilePane gameOverPane;
     private Label scoreAmountLabel;
     private Label highScoreAmountLabel;

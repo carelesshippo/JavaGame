@@ -54,21 +54,11 @@ public class Player {
         return highScore;
     }
 
-    private void setHighScore(int highScore) throws Exception {
-        if (highScore < 0) {
-            throw new Exception("A score cannot be negative!");
-        }
-        this.highScore = highScore;
-    }
-
     public int getCurrentScore() {
         return currentScore;
     }
 
-    public void setCurrentScore(int currentScore) throws Exception {
-        if (currentScore < 0) {
-            throw new Exception("A score cannot be negative!");
-        }
+    public void setCurrentScore(int currentScore) {
         this.currentScore = currentScore;
         if (theScoreIsGreaterThanHighScore()) {
             highScore = this.currentScore;
