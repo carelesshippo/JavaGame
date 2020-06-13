@@ -6,7 +6,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import me.oliverHowe.GameManager;
-import me.oliverHowe.Main;
 import org.jetbrains.annotations.NotNull;
 
 public class GameOverRoot {
@@ -17,7 +16,7 @@ public class GameOverRoot {
     private Button playAgainButton;
 
     public GameOverRoot() {
-        gameManager = Main.getGameManager();
+        gameManager = GUI.getInstance().getGameManager();
         createGameOverPane();
     }
 

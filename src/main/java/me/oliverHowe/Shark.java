@@ -15,7 +15,7 @@ public class Shark {
 
 
     public Shark() {
-        gameManager = Main.getGameManager();
+        gameManager = GUI.getInstance().getGameManager();
         setSpeed(gameManager.getMinSpeed(), gameManager.getMaxSpeed());
         createSelf();
     }

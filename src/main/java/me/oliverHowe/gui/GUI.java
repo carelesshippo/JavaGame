@@ -2,30 +2,32 @@ package me.oliverHowe.gui;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import me.oliverHowe.GameManager;
-import me.oliverHowe.Main;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
 public class GUI extends Application {
-    static GUI instance;
-    final int SPEED = 10;
-    Scene scene;
-    MediaPlayer mediaPlayer;
-    TitleRoot titleRootObject;
-    GameManager gameManager;
-    GameRoot gameRootObject;
+    private static GUI instance;
+    private Scene scene;
+    private GameManager gameManager;
+    private GameRoot gameRootObject;
+    private MediaPlayer mediaPlayer;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     public static GUI getInstance() {
         return instance;
@@ -35,25 +37,26 @@ public class GUI extends Application {
         return Objects.requireNonNull(GUI.class.getClassLoader().getResource(path)).toExternalForm();
     }
 
-    public void setRoot(Pane root) {
-        scene.setRoot(root);
+    public GameManager getGameManager() {
+        return gameManager;
     }
 
     @Override
     public void start(@NotNull Stage primaryStage) {
         instance = this;
-        Main.setGameManager();
-        initializePrimaryStage(primaryStage);
-        gameManager = Main.getGameManager();
-        titleRootObject = new TitleRoot();
+        TitleRoot titleRootObject = new TitleRoot();
         scene = new Scene(titleRootObject.getTitleRoot(), 900, 500);
+        gameManager = new GameManager();
+        initializePrimaryStage(primaryStage);
         scene.getStylesheets().add(generateURL("titleScene.css"));
-        addKeyListener();
         primaryStage.setScene(scene);
         primaryStage.show();
         createMediaPlayer();
     }
 
+    public void setRoot(Pane root) {
+        scene.setRoot(root);
+    }
 
     private void createMediaPlayer() {
         @NotNull Media song = new Media(generateURL("music.mp3"));
@@ -63,41 +66,13 @@ public class GUI extends Application {
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
     }
 
-    private void addKeyListener() {
-        scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-            if (!gameManager.isGameRunning()) {
-                return;
-            }
-            if (key.getCode() == KeyCode.D || key.getCode() == KeyCode.RIGHT) {
-                moveRight();
-            }
-            if (key.getCode() == KeyCode.A || key.getCode() == KeyCode.LEFT) {
-                moveLeft();
-            }
-        });
-        scene.addEventHandler(KeyEvent.KEY_RELEASED, (key) -> {
-            if (!gameManager.isGameRunning()) {
-                return;
-            }
-            if (key.getCode() == KeyCode.D || key.getCode() == KeyCode.RIGHT || key.getCode() == KeyCode.A || key.getCode() == KeyCode.LEFT) {
-                gameManager.setPlayerVelocity(0);
-            }
-
-        });
+    public <T extends Event> void addKeyListener(EventType<T> eventType, EventHandler<? super T> handler) {
+        scene.addEventHandler(eventType, handler);
     }
 
     public void switchToGameScene() {
         gameRootObject = new GameRoot();
         setRoot(gameRootObject.getGameRootPane());
-    }
-
-
-    private void moveLeft() {
-        gameManager.setPlayerVelocity(-SPEED);
-    }
-
-    private void moveRight() {
-        gameManager.setPlayerVelocity(SPEED);
     }
 
     private void initializePrimaryStage(@NotNull Stage stage) {

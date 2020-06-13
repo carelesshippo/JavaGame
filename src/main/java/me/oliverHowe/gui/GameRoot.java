@@ -7,7 +7,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import me.oliverHowe.GameManager;
-import me.oliverHowe.Main;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -17,7 +16,7 @@ public class GameRoot {
     final Pane gameRootPane = new Pane();
 
     public GameRoot() {
-        gameManager = Main.getGameManager();
+        gameManager = GUI.getInstance().getGameManager();
         createGameScenePane();
     }
 

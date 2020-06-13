@@ -1,19 +1,12 @@
 package me.oliverHowe;
 
+import me.oliverHowe.gui.GUI;
+
 public class TickManager extends Thread {
-
-    private static TickManager instance;
-    private final GameManager gameManager = Main.getGameManager();
+    private final GameManager gameManager = GUI.getInstance().getGameManager();
     private int ticks;
-    private int elapsedTime;
-
-    public static TickManager getInstance() {
-        return instance;
-    }
 
     public void run() {
-        instance = this;
-        elapsedTime = 0;
         ticks = 0;
         long lastTime = System.nanoTime();
         final double amountOfTicks = 60D;
@@ -35,7 +28,6 @@ public class TickManager extends Thread {
         ticks++;
         if (ticks >= 60) {
             ticks = 0;
-            elapsedTime++;
         }
     }
 }

@@ -3,18 +3,29 @@ package me.oliverHowe;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
 import me.oliverHowe.gui.GUI;
+import me.oliverHowe.gui.KeyboardManager;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
 public class GameManager {
+    private final int DEFAULTMAXSPEED = 10;
+    private final int DEFAULTMINSPEED = 1;
+    private final int STARTINGSHARKS = 1;
+    private final int STARTINGFISH = 3;
+    private final int NEWSHARKS = 20;
+    private final int NEWSPEED = 10;
+    private final int SPEEDINTERVAL = 2;
+    private final int SHARKINTERVAL = 1;
+    private final int PLAYERSPEED = 10;
     private final GUI gui = GUI.getInstance();
     private final ArrayList<Fish> fishes = new ArrayList<>();
     private final ArrayList<Shark> sharks = new ArrayList<>();
     private Player player;
     private boolean gameRunning = false;
-    private int maxSpeed = 10;
-    private int minSpeed = 1;
+    private int maxSpeed = DEFAULTMAXSPEED;
+    private int minSpeed = DEFAULTMINSPEED;
+    private KeyboardManager inputDetector;
 
     public int getMaxSpeed() {
         return maxSpeed;
@@ -40,6 +51,7 @@ public class GameManager {
     }
 
     public void startGameForFirstTime() {
+        inputDetector = new KeyboardManager();
         initializeAllCharacters();
         startGame();
     }
@@ -56,7 +68,7 @@ public class GameManager {
 
     private void initializeFishes() {
         fishes.clear();
-        addFishes(3, false);
+        addFishes(STARTINGFISH, false);
     }
 
     private void addFishes(int amount, boolean midGame) {
@@ -71,7 +83,7 @@ public class GameManager {
 
     private void initializeSharks() {
         sharks.clear();
-        addSharks(1, false);
+        addSharks(STARTINGSHARKS, false);
     }
 
     private void addSharks(int amount, boolean midGame) {
@@ -88,7 +100,7 @@ public class GameManager {
         return player.getBoat();
     }
 
-    public void setPlayerVelocity(int velocity) {
+    private void setPlayerVelocity(int velocity) {
         player.setVelocity(velocity);
     }
 
@@ -121,7 +133,23 @@ public class GameManager {
         return images;
     }
 
+    private boolean right() {
+        return inputDetector.isdDown() || inputDetector.isRightArrowDown();
+    }
+
+    private boolean left() {
+        return inputDetector.isaDown() || inputDetector.isLeftArrowDown();
+    }
+
     public void tick() {
+        setPlayerVelocity(0);
+        if (left() && right()) {
+            setPlayerVelocity(0);
+        } else if (left()) {
+            setPlayerVelocity(-PLAYERSPEED);
+        } else if (right()) {
+            setPlayerVelocity(PLAYERSPEED);
+        }
         player.tick();
         for (@NotNull Shark shark : sharks) {
             shark.tick();
@@ -133,11 +161,11 @@ public class GameManager {
 
     public void scored() {
         int newScore = player.getCurrentScore() + 1;
-        if (newScore % 10 == 0) {
-            addToSpeed(2);
+        if (newScore % NEWSPEED == 0) {
+            addToSpeed(SPEEDINTERVAL);
         }
-        if (newScore % 20 == 0) {
-            addSharks(1, true);
+        if (newScore % NEWSHARKS == 0) {
+            addSharks(SHARKINTERVAL, true);
         }
         player.setCurrentScore(newScore);
         gui.updateScoreLabel();
@@ -153,6 +181,8 @@ public class GameManager {
     }
 
     public void startGameAgain() {
+        maxSpeed = DEFAULTMAXSPEED;
+        minSpeed = DEFAULTMINSPEED;
         initializeFishes();
         initializeSharks();
         resetAllPositions();

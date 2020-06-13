@@ -3,7 +3,6 @@ package me.oliverHowe.gui;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import me.oliverHowe.Main;
 import org.jetbrains.annotations.NotNull;
 
 public class TitleRoot {
@@ -24,7 +23,7 @@ public class TitleRoot {
         startButton.setMaxSize(150, 100);
         startButton.setPrefSize(125, 75);
         startButton.setId("startButton");
-        startButton.setOnAction(event -> Main.getGameManager().startGameForFirstTime());
+        startButton.setOnAction(event -> GUI.getInstance().getGameManager().startGameForFirstTime());
         titleRoot.getChildren().add(startButton);
     }
 

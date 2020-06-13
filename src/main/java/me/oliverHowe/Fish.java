@@ -14,7 +14,7 @@ public class Fish {
     private final GameManager gameManager;
 
     public Fish() {
-        gameManager = Main.getGameManager();
+        gameManager = GUI.getInstance().getGameManager();
         setSpeed(gameManager.getMinSpeed(), gameManager.getMaxSpeed());
         createSelf();
     }
